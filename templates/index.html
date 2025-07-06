@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Accident Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form select,
+        form input[type="number"],
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        form input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+        form input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        h3 {
+            margin-top: 20px;
+            text-align: center;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Traffic Accident Prediction</h2>
+        <form action="/predict" method="POST">
+            <select name="weather" required>
+                <option value="">Select Weather</option>
+                <option>Clear</option>
+                <option>Rainy</option>
+                <option>Snowy</option>
+            </select>
+            <select name="road_type" required>
+                <option value="">Select Road Type</option>
+                <option>Highway</option>
+                <option>City Road</option>
+                <option>Rural Road</option>
+            </select>
+            <select name="time_of_day" required>
+                <option value="">Select Time of Day</option>
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+                <option>Night</option>
+            </select>
+            <input type="number" name="traffic_density" placeholder="Traffic Density (1-3)" step="any" required>
+            <input type="number" name="speed_limit" placeholder="Speed Limit (km/h)" required>
+            <input type="number" name="num_vehicles" placeholder="Number of Vehicles" required>
+            <input type="number" name="driver_alcohol" placeholder="Driver Alcohol Level (0 or 1)" required>
+            <select name="accident_severity" required>
+                <option value="">Select Accident Severity</option>
+                <option>Low</option>
+                <option>Moderate</option>
+                <option>High</option>
+            </select>            
+            <select name="road_condition" required>
+                <option value="">Select Road Condition</option>
+                <option>Dry</option>
+                <option>Wet</option>
+                <option>Icy</option>
+                <option>Under Construction</option>
+            </select>
+            <select name="vehicle_type" required>
+                <option value="">Select Vehicle Type</option>
+                <option>Car</option>
+                <option>Truck</option>
+                <option>Bus</option>
+            </select>
+            <input type="number" name="driver_age" placeholder="Driver Age" required>
+            <input type="number" name="driver_experience" placeholder="Driver Experience" required>
+            <select name="road_light_condition" required>
+                <option value="">Select Light Condition</option>
+                <option>Daylight</option>
+                <option>Artificial Light</option>
+            </select>
+            <input type="submit" value="Predict Accident Risk">
+        </form>
+
+        {% if prediction_text %}
+            <h3>{{ prediction_text }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
